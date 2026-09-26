@@ -12,17 +12,17 @@ memberStatus: {
     type: String,
     enum: MemberStatus,
     default: MemberStatus.ACTIVE
-}
+},
 
 memberNick: {
     type: String,
-    index: { unique: true,sparse: true`},
+    index: { unique: true,sparse: true},
     required: true
 },
 
 memberPhone: {
     type: String,
-    index: { unique: true,sparse: true`},
+    index: { unique: true,sparse: true},
     required: true
 },
 
