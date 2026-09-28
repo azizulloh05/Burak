@@ -1,15 +1,34 @@
- // Task N 
+
+
+
+
+/* Project Standards:
+    -Logging standards
+    -Naming standards:
+        function, method, variable => camelCase
+        class => PascalCase
+        folder => kebab-case
+        css => snake-case
+-Error handling standards
+
+*/ 
+
+
+
+
+
+// Task N 
 // Shunday function yozing, u string qabul qilsin va string palindrom yani togri 
 // oqilganda ham, orqasidan oqilganda ham bir hil oqiladigan soz ekanligini aniqlab boolean qiymat qaytarsin.
 
 // MASALAN: polindromCheck("dad") return true, polindromCheck("hello") return false
 
-function polindromCheck(str: string): boolean {
-    const reversed = str.split("").reverse().join("")
-    return str === reversed
-}
-const result = polindromCheck("dad");
-console.log("result:", result)
+// function polindromCheck(str: string): boolean {
+//     const reversed = str.split("").reverse().join("")
+//     return str === reversed
+// }
+// const result = polindromCheck("dad");
+// console.log("result:", result)
 
  
  // TASK M: 
