@@ -1,3 +1,8 @@
+
+//=========
+ // Traditional FD => BSSR (Admin) => backend server side rendering
+ // Modern FD  => spa (user app) => React
+//==========
 // TASK P:
 
 // Parametr sifatida yagona object qabul qiladigan function yozing.
@@ -5,15 +10,15 @@
 
 // MASALAN: objectToArray( {a: 10, b: 20}) return [['a', 10], ['b', 20]]
 
-function objectToArray(obj: any) {
-    let newObj: any[] = [];
-    for(let key in obj) {
-        newObj.push([key, obj[key]]);
-    }
-    return newObj
-}
-const result = objectToArray({a: 10, b: 20});
-console.log(result);
+// function objectToArray(obj: any) {
+//     let newObj: any[] = [];
+//     for(let key in obj) {
+//         newObj.push([key, obj[key]]);
+//     }
+//     return newObj
+// }
+// const result = objectToArray({a: 10, b: 20});
+// console.log(result);
 
 
 
