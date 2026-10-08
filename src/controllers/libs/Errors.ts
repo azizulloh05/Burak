@@ -14,7 +14,7 @@ export enum Message {
     NO_DATA_FOUND = "No data found!",
     CREATE_FAILED = "Create failed!",
     UPDATE_FAILED = "Update failed!",
-
+    NOT_AUTHENTICATED = "You are not authenticated, please login first!",
     USED_NICK_PHONE= "You are inserting already used nick or phone!",
     NO_MEMBER_NICK = "No number with that member nick!",
     WRONG_PASSWORD ="Wrong password, please try again!",

@@ -1,12 +1,11 @@
-import { Request, Response } from "express";
-import { T } from "./libs/types/common";
-import MemberService from "../models/Member.sevice";
-import { MemberType } from "./libs/enums/member.enum";
-import { AdminRequest, LoginInput, MemberInput } from "./libs/types/member";
-import Errors,{Message} from "./libs/Errors";
+import { NextFunction, Request, Response } from 'express'
+import { MemberType } from './libs/enums/member.enum'
+import Errors, { Message } from './libs/Errors'
+import { T } from './libs/types/common'
+import { AdminRequest, LoginInput, MemberInput } from './libs/types/member'
+import MemberService from "../models/Member.sevice"
 
-
-const memberService = new MemberService();
+const memberService = new MemberService()
 
 // Restaurant controller uchun methodlar saqledi
 const restaurantController: T = {};
@@ -51,7 +50,7 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
 
         const newMember = (req.body ?? {}) as MemberInput;
         newMember.memberType = MemberType.RESTAURANT;
-        const result = await memberService.proccesSignup(newMember);
+        const result = await    memberService.proccesSignup(newMember);
 
         req.session.member = result;
         res.send(result);
@@ -108,4 +107,21 @@ restaurantController.checkAuthSession = async (req: AdminRequest, res: Response)
         res.send(err)
     }
 };
+
+restaurantController.verifyRestaurant = (
+	req: AdminRequest,
+	res: Response,
+	next: NextFunction,
+) => {
+	if (req.session?.member?.memberType === MemberType.RESTAURANT) {
+		req.member = req.session.member
+		next()
+	} else {
+		const message = Message.NOT_AUTHENTICATED
+		res.send(
+			`<script> alert("${message}"); window.location.replace('/admin/login'); </script>`,
+		)
+	}
+}
+
 export default restaurantController;

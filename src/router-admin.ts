@@ -1,23 +1,41 @@
-import  express from "express";
-const routerAdmin = express.Router();
-import restaurantController from "./controllers/restaurant.controller";
-import productController from "./controllers/product.controllers";
+import express from 'express'
+import productController from "./controllers/product.controllers"
+import restaurantController from './controllers/restaurant.controller'
+import makeUploader from './controllers/libs/utils/uploader'
+const routerAdmin = express.Router()
+// import productController from './controllers/product.controller';
 
-/**Restaurant Routes */
-routerAdmin.get("/", restaurantController.goHome);
+/* Restaurant */
+routerAdmin.get('/', restaurantController.goHome)
 routerAdmin
-.get("/login", restaurantController.getLogin)
-.post("/login", restaurantController.processLogin);
+	.get('/login', restaurantController.getLogin)
+	.post('/login', restaurantController.processLogin)
 routerAdmin
-.get("/signup", restaurantController.getSignup)
-.post("/signup", restaurantController.processSignup);
-routerAdmin.get("/logout", restaurantController.logout);
-routerAdmin.get("/check-me", restaurantController.checkAuthSession);
-
-/** Product Routes */
-routerAdmin.get("/products/all", productController.getAllProducts);
-routerAdmin.post("/products/create", productController.createNewProduct);
-routerAdmin.put("/products/:id", productController.updateChosenProduct);
-/** User Routes */
+	.get('/signup', restaurantController.getSignup)
+	.post(
+		'/signup',
+		makeUploader('members').single('memberImage'),
+		restaurantController.processSignup,
+	)
+routerAdmin.get('/logout', restaurantController.logout)
+routerAdmin.get('/check-me', restaurantController.checkAuthSession)
+/* Product */
+routerAdmin.get(
+	'/product/all',
+	restaurantController.verifyRestaurant,
+	productController.getAllProducts,
+)
+routerAdmin.post(
+	'/product/create',
+	restaurantController.verifyRestaurant,
+	makeUploader('products').array('productImages', 5),
+	productController.createNewProduct,
+)
+routerAdmin.post(
+	'/product/:id',
+	restaurantController.verifyRestaurant,
+	productController.updateChosenProduct,
+)
+/* User */
 
 export default routerAdmin;
