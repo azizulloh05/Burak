@@ -1,6 +1,15 @@
 <%- include('includes/header') %>
-<body style="background-color: aliceblue;">
-    <div class="format1">Users Page</div>
-</body>
-</html>
-  <%- include('includes/footer') %>
+
+	<body>
+		<div>
+			<div class="format1">Users Page</div>
+			<% users.map((value)=> {
+				%>
+				<h2>
+					<%= value.memberNick %>
+				</h2>
+				<% }) %>
+		</div>
+	</body>
+
+	<%- include('includes/footer') %>
