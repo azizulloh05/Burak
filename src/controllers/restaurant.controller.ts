@@ -50,7 +50,7 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
 
         const newMember = (req.body ?? {}) as MemberInput;
         newMember.memberType = MemberType.RESTAURANT;
-        const result = await    memberService.proccesSignup(newMember);
+        const result = await    memberService.processSignup(newMember);
 
         req.session.member = result;
         res.send(result);
@@ -68,7 +68,7 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
         console.log('processLogin')
         const input = (req.body ?? {}) as LoginInput;
 
-        const result = await memberService.proccesLogin(input);
+        const result = await memberService.processLogin(input);
 
         req.session.member = result;
         res.send(result);
