@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { MemberType } from './libs/enums/member.enum'
-import Errors, { Message } from './libs/Errors'
+import Errors, { HttpCode, Message } from './libs/Errors'
 import { T } from './libs/types/common'
 import { AdminRequest, LoginInput, MemberInput } from './libs/types/member'
 import MemberService from "../models/Member.sevice"
@@ -108,11 +108,16 @@ restaurantController.getUsers = async (req: Request, res: Response) => {
     }
 };
 
-restaurantController.updateChosenUser = (req: Request, res: Response) => {
+restaurantController.updateChosenUser = async (req: Request, res: Response) => {
     try {
         console.log("updateChosenUser")
+        const result = await memberService.updateChosenUser(req.body);
+
+        res.status(HttpCode.OK).json({data: result});
     } catch (err) {
         console.log('Error, updateChosenUser', err);
+        if(err instanceof Errors) res.status(err.code).json(err);
+        else res.status(Errors.standard.code).json(err);
     }
 };
 

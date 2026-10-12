@@ -36,7 +36,7 @@ export interface LoginInput {
 }
 
 export interface MemberUpdateInput {
-	_id: Types.ObjectId
+	_id: Types.ObjectId;
 	memberStatus?: MemberStatus
 	memberNick?: string
 	memberPhone?: string
