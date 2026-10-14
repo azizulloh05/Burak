@@ -67,19 +67,24 @@ MASALAN: missingNumber([3, 0, 1]) return 2 */
 
 */ 
 
-/* 
- Traditional API
+/* Requests:
+ Traditional API (form POST)
  Rest API
  GraphQL API
  ...
 */
 
-/*
-    TRADITIONAL FD  => EJS
-     MODERN FD => React
+/* Frontend Development:
+    TRADITIONAL FD =>  SSR  => EJS
+     MODERN FD.   => SPA  => React
      */
 
-     /*
+     /* Cookies
      request join
      self destroy
      */
+    /* Validation:
+    Frontend validation
+    Backend Validation
+    Database Validation
+    */

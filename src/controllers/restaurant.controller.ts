@@ -63,10 +63,15 @@ restaurantController.processSignup = async (req: AdminRequest, res: Response) =>
         );
     }
 };
-restaurantController.processLogin = async (req: AdminRequest, res: Response) => {
+restaurantController.processLogin = async (
+    req: AdminRequest,
+    res: Response,
+) => {
     try {
-        console.log('processLogin')
-        const input = (req.body ?? {}) as LoginInput;
+        console.log('processLogin');
+        const input = req.body as LoginInput;
+        console.log('req.body:', req.body);
+        
 
         const result = await memberService.processLogin(input);
 
@@ -75,7 +80,7 @@ restaurantController.processLogin = async (req: AdminRequest, res: Response) => 
     } catch (err) {
         console.log('Error, processLogin', err);
         const message =
-        err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
+            err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
         res.send(
             '<script>alert("${message}"); window.location.replace ("/admin/login") </script>'
         );
