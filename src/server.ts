@@ -12,7 +12,7 @@ mongoose
     const PORT = process.env.PORT ?? 3003;
     app.listen(PORT, function () {
         console.info(`Server is running successfully on PORT: ${PORT}`);
-        console.info('Admin project on http://locahost:${PORT}/admin \n');
+        console.info(`Admin project on http://locahost:${PORT}/admin \n`);
     });
   })
   .catch((err) => console.log("ERROR on connection MongoDB", err));
