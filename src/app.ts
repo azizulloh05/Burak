@@ -11,7 +11,7 @@ import { T } from "./controllers/libs/types/common"
 
 const MongoStore = ConnectMongoDB(session);
 const store = new MongoStore({
-    uri: String(process.env.MONGO_URL),
+    uri: String(process.env.MONGO_URI),
 collection: "sessions",
 });
 
