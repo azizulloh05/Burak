@@ -5,7 +5,7 @@ $(function () {
 		const id = e.target.id
 		console.log(id)
 
-		const memberStatus = $(`#${id}.member-status`).val()
+        const memberStatus = $(`#${id}.member-status`).val()
 		console.log(memberStatus)
 
 		// Axious updateUser
