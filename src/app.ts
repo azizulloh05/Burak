@@ -12,13 +12,14 @@ import { T } from './controllers/libs/types/common'
 
 const MongoDBStore = ConnectMongoDB(session)
 const store = new MongoDBStore({
-	uri: String(process.env.MONGO_URL),
+	uri: String(process.env.MONGO_URI),
 	collection: 'sessions',
 })
 
 /** 1–ENTRANCE **/
 const app = express()
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
+app.use("/uploads", express.static( "./uploads"));
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cookieParser())
