@@ -5,10 +5,9 @@ import makeUploader from "./controllers/libs/utils/uploader";
 import uploader from "./controllers/libs/utils/uploader";
 
 //member
-router
-.post("/login",memberController.login);
-router
-.post("/signup",memberController.signup);
+router.get("/member/restaurant", memberController.getRestaurant);
+router.post("/login",memberController.login);
+router.post("/signup",memberController.signup);
 router.post(
 	'/member/logout',
 	memberController.verifyAuth,
