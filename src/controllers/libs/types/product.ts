@@ -1,8 +1,8 @@
-import { ObjectId } from 'mongoose';
+import { Types } from 'mongoose';
 import { ProductCollection, ProductSize, ProductStatus, ProductVolume } from "../enums/product.enum";
 
 export interface Product {
-  _id: ObjectId;
+  _id: Types.ObjectId;
   productStatus: ProductStatus;
   productCollection: ProductCollection;
   productName: string;
@@ -37,7 +37,7 @@ export interface ProductInput {
 }
 
 export interface ProductUpdateInput {
-  _id: ObjectId;
+  _id: Types.ObjectId;
   productStatus?: ProductStatus;
   productCollection?: ProductCollection;
   productName?: string;

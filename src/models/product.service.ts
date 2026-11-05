@@ -7,12 +7,12 @@ import {
   ProductInquiry,
   ProductUpdateInput,
 } from "../controllers/libs/types/product";
-import ProductModel from "../models/schema/Product.model";
+import ProductModel from "../schema/product.model";
 import { ProductStatus } from "../controllers/libs/enums/product.enum";
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
 import ViewService from "./View.service";
-import { ViewInput } from "./controllers/libs/types/view";
-import { ViewGroup } from "../libs/enums/view.enum";
+import { ViewInput } from "../controllers/libs/types/view";
+import { ViewGroup } from "../controllers/libs/enums/view.enum";
 
 class ProductService {
   private readonly productModel;
@@ -57,7 +57,7 @@ class ProductService {
   }
 
   public async getProduct(
-    memberId: ObjectId | null,
+    memberId: Types.ObjectId | null,
     id: string,
   ): Promise<Product> {
     const productId = shapeIntoMongooseObjectId(id);
@@ -93,10 +93,11 @@ class ProductService {
             { new: true },
           )
           .exec();
+        if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
       }
     }
 
-    return result;
+    return result as unknown as Product;
   }
 
   /* BSSR */
@@ -104,12 +105,12 @@ class ProductService {
     const result = await this.productModel.find().exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
 
-    return result;
+    return result as unknown as Product[];
   }
 
   public async createNewProduct(input: ProductInput): Promise<Product> {
     try {
-      return await this.productModel.create(input);
+      return (await this.productModel.create(input)) as unknown as Product;
     } catch (err) {
       console.error("Error, from module: createNewProduct", err);
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
@@ -127,7 +128,7 @@ class ProductService {
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
 
-    return result;
+    return result as unknown as Product;
   }
 }
 
