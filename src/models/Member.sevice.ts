@@ -104,6 +104,13 @@ class MemberService {
 
     return result as Member[];
   }
+
+	public async addUserPoint(member: Member, points: number): Promise<void> {
+		const result = await this.memberModel
+			.findByIdAndUpdate(member._id, { $inc: { memberPoints: points } })
+			.exec()
+		if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND)
+	}
 		
 	/** SSR */
 
